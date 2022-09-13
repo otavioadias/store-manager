@@ -12,4 +12,6 @@ const getProductById = async (id) => {
   return { type: 200, message: product };
 };
 
-module.exports = { getAllProducts, getProductById };
+const insertProduct = async (name) => productsModel.insertProduct(name);
+
+module.exports = { getAllProducts, getProductById, insertProduct };
