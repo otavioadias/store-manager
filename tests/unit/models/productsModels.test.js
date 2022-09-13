@@ -1,6 +1,9 @@
 const { expect } = require("chai");
 const { describe, it } = require("mocha");
 const sinon = require("sinon");
+const sinonChai = require("sinon-chai");
+const chai = require("chai");
+chai.use(sinonChai);
 
 const productsModels = require('../../../src/models/productsModels.js');
 const { allProductsResponse } = require('../../../__tests__/_dataMock');
