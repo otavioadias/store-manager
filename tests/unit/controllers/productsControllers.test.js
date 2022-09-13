@@ -8,7 +8,11 @@ chai.use(sinonChai);
 const productsControllers = require("../../../src/controllers/productsControllers.js");
 const productsServices = require("../../../src/services/productsServices.js");
 
-const { allProductsResponse } = require("../../../__tests__/_dataMock");
+const {
+  allProductsResponse,
+  productCreateResponse,
+  rightProductBody,
+} = require("../../../__tests__/_dataMock");
 
 describe("Teste de unidade do productsControllers", () => {
   describe("Retorna uma mensagem de erro se perquisar um id inexistente e um objeto com o id correspondente", async () => {
@@ -77,5 +81,25 @@ describe("Teste de unidade do productsControllers", () => {
 
     after(async () => sinon.restore());
   });
+
+   describe("Cadastrar um novo produto - Camada Controller", async () => {
+     before(async () => {
+       sinon
+         .stub(productsServices, "insertProducts")
+         .resolves(productCreateResponse);
+     });
+     const res = {};
+     const req = { params: {}, body: rightProductBody };
+
+     res.status = sinon.stub().returns(res);
+     res.json = sinon.stub().returns();
+
+     await productsControllers.insertProduct(req, res);
+
+     expect(res.status).to.have.been.calledWith(201);
+     expect(res.json).to.have.been.calledWith(allProductsResponse);
+
+     after(async () => sinon.restore());
+   });
 
 });

@@ -6,7 +6,11 @@ const chai = require("chai");
 chai.use(sinonChai);
 
 const productsModels = require('../../../src/models/productsModels.js');
-const { allProductsResponse } = require('../../../__tests__/_dataMock');
+const conn = require("../../../src/models/connection.js");
+const {
+  allProductsResponse,
+  rightProductBody,
+} = require("../../../__tests__/_dataMock");
 
 describe('Teste de unidade do productsModels', () => {
   it("Retorna um array", async () => {
@@ -15,7 +19,7 @@ describe('Teste de unidade do productsModels', () => {
      });
     
     const allProducts = await productsModels.getAllProducts();
-    expect(allProducts).to.be.deep.equal(allProductsResponse);
+    expect(allProducts).to.be.an('array');
 
     after(() => sinon.restore());
   });
@@ -29,5 +33,16 @@ describe('Teste de unidade do productsModels', () => {
     expect(productOne).to.be.deep.equal(allProductsResponse[0]);
 
     after(() => sinon.restore());
+  });
+
+  it('Teste se é adicionado um novo produto - Camada Model', async () => {
+    before(async () => {
+      sinon.stub(conn, "execute").resolves([{ insertId: 6 }]);
+     });
+
+    const result = await productsModels.insertProduct(rightProductBody);
+    expect(result.insertId).to.equal(6);
+
+    after(async () => sinon.restore());
   });
 });

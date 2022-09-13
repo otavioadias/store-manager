@@ -6,9 +6,10 @@ const chai = require("chai");
 
 const productsModels = require("../../../src/models/productsModels.js");
 const productsServices = require("../../../src/services/productsServices.js");
-const { allProductsResponse } = require("../../../__tests__/_dataMock");
+const { allProductsResponse , rightProductBody,
+  productCreateResponse,} = require("../../../__tests__/_dataMock");
 
-describe("Teste de unidade do productsControllers", () => {
+describe("Teste de unidade do productsServices", () => {
   describe("Retorna uma mensagem de erro se perquisar um id inexistente e um objeto com o id correspondente", async () => {
     it("Retorna uma mensagem de erro", async () => {
       before(async () => {
@@ -43,9 +44,20 @@ describe("Teste de unidade do productsControllers", () => {
        });
 
        const result = await productsServices.getAllProducts();
-       expect(result).to.be.deep.equal(allProductsResponse);
+       expect(result).to.be.an('array');
 
        after(async () => sinon.restore());
      });
   });
-});
+
+  describe('Teste se é adicionado um novo produto - Camada Service', async () => {
+    before(async () => {
+      sinon.stub(productsModels, "insertProduct").resolves([{ insertId: 4 }]);
+    });
+    
+    const result = await productsServices.insertProduct(rightProductBody);
+    expect(result.insertId).to.equal(4);
+   
+    after(async () => sinon.restore());
+  });
+}); 
