@@ -1,4 +1,5 @@
 const express = require('express');
+const productMiddleware = require('../middlewares/productMiddleware');
 
 const productRouter = express.Router();
 
@@ -8,6 +9,6 @@ productRouter.get('/', productsController.getAllProducts);
 
 productRouter.get('/:id', productsController.getProductById);
 
-productRouter.post('/', productsController.insertProduct);
+productRouter.post('/', productMiddleware, productsController.insertProduct);
 
 module.exports = productRouter;
