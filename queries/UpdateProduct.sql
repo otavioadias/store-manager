@@ -1,0 +1,1 @@
+UPDATE products SET name = 'Otávio' WHERE id = 1;
