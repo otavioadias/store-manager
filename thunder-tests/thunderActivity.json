@@ -144,7 +144,7 @@
     "_id": "7167007a-05fe-4e67-8e62-f3bf412e9ea0",
     "colId": "history",
     "containerId": "",
-    "name": "localhost:3000/products/1",
+    "name": "PUT PRODUCT - ATT",
     "url": "localhost:3000/products/1",
     "method": "PUT",
     "sortNum": 0,
@@ -160,22 +160,17 @@
     "tests": []
   },
   {
-    "_id": "39c909df-bec8-406b-a470-55fac47dd5df",
+    "_id": "ed57d754-11a7-4bab-b9fc-b9891e583584",
     "colId": "history",
     "containerId": "",
-    "name": "localhost:3000/products/10",
-    "url": "localhost:3000/products/10",
-    "method": "PUT",
+    "name": "DELETE PRODUCT BY ID",
+    "url": "localhost:3000/products/1",
+    "method": "DELETE",
     "sortNum": 0,
-    "created": "2022-09-14T21:16:01.648Z",
-    "modified": "2022-09-14T21:17:21.627Z",
+    "created": "2022-09-14T21:29:21.617Z",
+    "modified": "2022-09-14T21:29:21.648Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
-      "form": []
-    },
     "tests": []
   }
 ]
