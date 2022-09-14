@@ -25,9 +25,21 @@ const insertSalesProducts = async (sale) => {
    }
 
    return { type: 404, message: { message: 'Product not found' } };
-  };
+};
+  
+const getAllSales = async () => salesModels.getAllSales();
+
+const getSaleById = async (id) => {
+  const sale = await salesModels.getSaleById(id);
+  if (sale.length === 0) {
+    return { type: 404, message: { message: 'Sale not found' } };
+  }
+  return { type: 200, message: sale };
+};
   
 module.exports = {
   insertSales,
   insertSalesProducts,
+  getAllSales,
+  getSaleById,
 };

@@ -13,12 +13,36 @@ const insertSalesProducts = async (saleId, sale) => {
     const [result] = await connection.execute(
         'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
         [saleId, s.productId, s.quantity],
-      );
+    );
       return result;
   });
+};
+
+const getAllSales = async () => {
+  const [result] = await connection.execute(
+    `SELECT sale_id AS saleId, date, product_id AS productId, quantity 
+    FROM sales
+    INNER JOIN sales_products AS sp ON sp.sale_id = sales.id
+    ORDER BY sale_id, product_id`,
+  );
+  return result;
+};
+
+const getSaleById = async (id) => {
+  const [result] = await connection.execute(
+    `SELECT date, product_id AS productId, quantity
+    FROM sales
+    INNER JOIN sales_products AS sp ON sp.sale_id = sales.id
+    WHERE sale_id = ?
+    ORDER BY sale_id, product_id;`,
+    [id],
+  );
+  return result;
 };
 
 module.exports = {
   insertSales,
   insertSalesProducts,
+  getAllSales,
+  getSaleById,
 };

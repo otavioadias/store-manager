@@ -101,5 +101,4 @@ describe("Teste de unidade do productsControllers", () => {
 
      after(async () => sinon.restore());
    });
-
 });
