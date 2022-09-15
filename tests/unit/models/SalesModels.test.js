@@ -15,27 +15,36 @@ const {
 } = require("../../../__tests__/_dataMock");
 
 describe("Teste de unidade da salesModels", () => {
-  it("Teste se é adicionado uma nova venda - Camada Model", async () => {
+  describe("Teste do insertSales", () => {
     before(async () => {
-      sinon.stub(conn, "execute").resolves(new Date());
+      sinon.stub(conn, "execute").resolves([{ insertId: 3 }]);
     });
 
-    const result = await salesModels.insertSales(date);
-    
-    expect(result.insertId).to.equal(3);
+    after(async () => conn.execute.restore());
 
-    after(async () => sinon.restore());
+    it("Teste se é adicionado uma nova venda - Camada Model", async () => {
+      const result = await salesModels.insertSales(date);
+      expect(result.insertId).to.equal(3);
+    });
   });
 
-  // it("Teste se é adicionado uma relação da nova venda com os produtos - Camada Model", async () => {
-  //   before(async () => {
-  //     sinon.stub(conn, "execute").resolves(saleCreateResponse);
-  //   });
+  describe("Teste do insertSales", () => {
+    before(async () => {
+      sinon.stub(conn, "execute").resolves(true);
+    });
 
-  //   const result = await salesModels.insertSalesProducts(3, rightSaleBody);
+    after(async () => conn.execute.restore());
+    const inputSale = [
+      {
+        productId: 1,
+        quantity: 3,
+      },
+    ]; 
+    it("Teste se é adicionado uma relação da nova venda com os produtos - Camada Model", async () => {
+      const result = await salesModels.insertSalesProducts(3, inputSale);
+      expect(result).to.be.true;
+    });
+  });
 
-  //   expect(result).to.have.length.equal(2);
-
-  //   after(async () => sinon.restore());
-  // });
+  
 });

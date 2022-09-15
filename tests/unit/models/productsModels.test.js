@@ -13,36 +13,36 @@ const {
 } = require("../../../__tests__/_dataMock");
 
 describe('Teste de unidade do productsModels', () => {
-  it("Retorna um array", async () => {
-     before(() => {
-       sinon.stub(productsModels, "execute").resolves(allProductsResponse);
+  describe("Retorna um array", async () => {
+     before(async () => {
+       sinon.stub(conn, "execute").resolves(allProductsResponse);
      });
-    
-    const allProducts = await productsModels.getAllProducts();
-    expect(allProducts).to.be.an('array');
-
-    after(() => sinon.restore());
+     after(async () => sinon.restore());
+      it("Retorna um array", async () => {
+        const allProducts = await productsModels.getAllProducts();
+        expect(allProducts).to.be.an('array');
+      });
   });
 
-  it("Retorna um objeto de acordo com o id pesquisado", async () => {
+  describe("Retorna um objeto de acordo com o id pesquisado", async () => {
     before(() => {
-      sinon.stub(productsModels, "execute").resolves(allProductsResponse[0]);
+      sinon.stub(conn, "execute").resolves(allProductsResponse[0]);
     });
-
-    const [productOne] = await productsModels.getProductById(1);
-    expect(productOne).to.be.deep.equal(allProductsResponse[0]);
-
     after(() => sinon.restore());
+      it("Retorna um objeto de acordo com o id pesquisado", async () => {
+        const productOne = await productsModels.getProductById(1);
+        expect(productOne).to.be.deep.equal(allProductsResponse[0]);
+      });
   });
 
-  it('Teste se é adicionado um novo produto - Camada Model', async () => {
+  describe('Teste se é adicionado um novo produto - Camada Model', async () => {
     before(async () => {
       sinon.stub(conn, "execute").resolves([{ insertId: 6 }]);
-     });
-
-    const result = await productsModels.insertProduct(rightProductBody);
-    expect(result.insertId).to.equal(6);
-
+    });
     after(async () => sinon.restore());
+      it('Teste se é adicionado um novo produto - Camada Model', async () => {
+        const result = await productsModels.insertProduct(rightProductBody);
+        expect(result.insertId).to.equal(6);
+      });
   });
 });
