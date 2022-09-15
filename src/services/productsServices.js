@@ -22,8 +22,8 @@ const updateProductById = async (name, id) => {
 };
 
 const deleteProductById = async (id) => {
-  const [getproduct] = await productsModel.getProductById(id);
-  if (getproduct.length === 0) {
+  const getproduct = await productsModel.getProductById(id);
+  if (getproduct[0].length === 0) {
     return { type: 404, message: { message: 'Product not found' } };
   }
   await productsModel.deleteProductById(id);

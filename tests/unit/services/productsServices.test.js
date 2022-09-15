@@ -36,7 +36,6 @@ describe("Retorna um objeto com o id correspondente", () => {
 
   it("Retorna um objeto com o id correspondente", async () => {
     const result = await productsServices.getProductById(1);
-    console.log('correct', result);
     expect(result.message).to.be.deep.equal(allProductsResponse[0]);
   });
 });
@@ -62,3 +61,30 @@ describe('Teste se é adicionado um novo produto - Camada Service', async () => 
     expect(result.insertId).to.equal(4);
   });
 });
+  
+ describe("Deleta um produto com o id correspondente", () => {
+   beforeEach(async () => {
+     sinon.stub(productsModels, "deleteProductById").resolves({ type: 204 });
+   });
+   afterEach(async () => productsModels.deleteProductById.restore());
+
+   it('Deleta produto', async() => {
+     const result = await productsModels.deleteProductById(1);
+     expect(result).to.be.deep.equal({ type: 204 });
+   })
+ });
+
+describe('Retorna false caso tente deletar um produto com id inexistente', () => {
+  beforeEach(async () => {
+    sinon
+      .stub(productsModels, "deleteProductById")
+      .resolves({ type: 404, message: { message: "Product not found" } });
+  });
+  afterEach(async () => productsModels.deleteProductById.restore());
+
+  it('Retorna false', async () => {
+    const result = await productsModels.deleteProductById(99);
+    expect(result).to.be.deep.equal({ type: 404, message: { message: 'Product not found' } });
+  });
+});
+
