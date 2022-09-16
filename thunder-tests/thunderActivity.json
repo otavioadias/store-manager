@@ -8,7 +8,7 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-09-09T22:58:32.934Z",
-    "modified": "2022-09-15T17:52:19.465Z",
+    "modified": "2022-09-16T22:15:10.041Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -22,7 +22,7 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-09-09T22:58:35.323Z",
-    "modified": "2022-09-15T15:10:19.409Z",
+    "modified": "2022-09-16T22:13:06.448Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -275,6 +275,106 @@
       "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 10\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "6fcdfcb8-4d86-4805-b1fb-646572a3403b",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/search?q=Martelo",
+    "url": "localhost:3000/products/search?q=Martelo",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-16T21:54:33.445Z",
+    "modified": "2022-09-16T22:16:13.461Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Martelo",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "f3f07529-b56e-4f10-8467-55fff52575a9",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/search?q=Marteloooo",
+    "url": "localhost:3000/products/search?q=Marteloooo",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-16T22:01:52.959Z",
+    "modified": "2022-09-16T22:01:52.997Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Marteloooo",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "6b4216d4-3fc3-48e2-8337-89b7162a4ca3",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/search?q=mskla",
+    "url": "localhost:3000/products/search?q=mskla",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-16T22:13:25.328Z",
+    "modified": "2022-09-16T22:13:25.366Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "mskla",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "d1f6b4fd-24ca-4084-9c91-60b20a83e176",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/search?q=Capitão",
+    "url": "localhost:3000/products/search?q=Capitão",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-16T22:13:33.782Z",
+    "modified": "2022-09-16T22:15:03.717Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Capitão",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "10d08a96-428a-4dd0-bcbb-3e0071b23875",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/search?q=Martelokk",
+    "url": "localhost:3000/products/search?q=Martelokk",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-16T22:15:28.311Z",
+    "modified": "2022-09-16T22:15:28.345Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Martelokk",
+        "isPath": false
+      }
+    ],
     "tests": []
   }
 ]

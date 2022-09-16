@@ -30,10 +30,20 @@ const deleteProductById = async (id) => {
   return { type: 204 };
 };
 
+const findProductByName = async (q) => {
+  const [getProduct] = await productsModel.findProductByName(q);
+  if (getProduct.length === 0) {
+    const allProducts = await productsModel.getAllProducts();
+    return { type: 200, message: allProducts[0] };
+  }
+  return { type: 200, message: getProduct };
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   insertProduct,
   updateProductById,
   deleteProductById,
+  findProductByName,
 };

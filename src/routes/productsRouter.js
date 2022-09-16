@@ -6,6 +6,7 @@ const productRouter = express.Router();
 
 const productsController = require('../controllers/productsControllers');
 
+productRouter.get('/search', productsController.findProductByName);
 productRouter.get('/', productsController.getAllProducts);
 productRouter.get('/:id', productsController.getProductById);
 productRouter.post('/', productMiddleware, productsController.insertProduct);
