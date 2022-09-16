@@ -8,5 +8,6 @@ const salesControllers = require('../controllers/salesControllers');
 salesRouter.post('/', salesMiddleware, salesControllers.insertSalesProducts);
 salesRouter.get('/', salesControllers.getAllSales);
 salesRouter.get('/:id', salesControllers.getSaleById);
+salesRouter.delete('/:id', salesControllers.deleteSaleById);
 
 module.exports = salesRouter;

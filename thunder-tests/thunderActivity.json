@@ -172,5 +172,33 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "e9b3ed04-7f53-49c2-9e56-5a191d6386bd",
+    "colId": "history",
+    "containerId": "",
+    "name": "DELETE SALE BY ID",
+    "url": "localhost:3000/sales/4",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-09-16T16:08:23.955Z",
+    "modified": "2022-09-16T16:08:55.482Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2cf82cf0-d819-4d93-8fd5-c45645da41dc",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/sales/1",
+    "url": "localhost:3000/sales/1",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-09-16T16:09:09.287Z",
+    "modified": "2022-09-16T16:09:09.331Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
