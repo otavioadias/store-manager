@@ -45,16 +45,12 @@ const deleteSaleById = async (id) => {
   return true;
 };
 
-const updateSalesProducts = async (saleId, sale) => {
-  console.log(saleId);
-  console.log(sale);
-  sale.forEach(async (s) => {
-    console.log(sale);
+const updateSalesProducts = async (saleId, productId, quantity) => {
     await connection.execute(
-      'UPDATE sales_products SET product_id = ? , quantity = ? WHERE sale_id = ?',
-      [s.productId, s.quantity, saleId],
+      'UPDATE sales_products SET product_id = ?, quantity = ? WHERE sale_id = ? AND product_id = ?',
+      [productId, quantity, saleId, productId],
     );
-  });
+  
   return true;
 };
 

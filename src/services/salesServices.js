@@ -60,12 +60,12 @@ const updateSalesProducts = async (id, sale) => {
   const validate = array.every((s) => arrayId.includes(s));
 
   if (!validateSale) {
-      return { type: 404, message: { message: 'Sale not found' } };
+    return { type: 404, message: { message: 'Sale not found' } };
   }
   if (!validate) {
-          return { type: 404, message: { message: 'Product not found' } };
+    return { type: 404, message: { message: 'Product not found' } };
   }
-  await salesModels.updateSalesProducts(id, sale);
+  sale.forEach(async (s) => salesModels.updateSalesProducts(id, s.productId, s.quantity));
   return { type: 200, message: { saleId: id, itemsUpdated: sale } };
 };
   

@@ -1,3 +1,3 @@
 UPDATE sales_products
-SET product_id = 1, quantity = 1
-WHERE sale_id = 1 LIMIT 2
+SET product_id = 2, quantity = 4
+WHERE sale_id = 1 
