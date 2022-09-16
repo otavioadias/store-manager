@@ -45,10 +45,24 @@ const deleteSaleById = async (id) => {
   return true;
 };
 
+const updateSalesProducts = async (saleId, sale) => {
+  console.log(saleId);
+  console.log(sale);
+  sale.forEach(async (s) => {
+    console.log(sale);
+    await connection.execute(
+      'UPDATE sales_products SET product_id = ? , quantity = ? WHERE sale_id = ?',
+      [s.productId, s.quantity, saleId],
+    );
+  });
+  return true;
+};
+
 module.exports = {
   insertSales,
   insertSalesProducts,
   getAllSales,
   getSaleById,
   deleteSaleById,
+  updateSalesProducts,
 };

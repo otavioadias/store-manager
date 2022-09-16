@@ -45,6 +45,29 @@ const deleteSaleById = async (id) => {
   await salesModels.deleteSaleById(id);
   return { type: 204 };
 };
+
+const updateSalesProducts = async (id, sale) => {
+  // Array dos id's dos produtos que estão no banco de dados, validação do id da venda
+  const all = await salesModels.getAllSales();
+  const arrayV = all.map((p) => p.saleId);
+  const validateSale = arrayV.some((s) => Number(id) === Number(s));
+  // Validação de produto inexistente
+  // Array dos id's dos produtos que estão sendo inseridos
+  const array = await sale.map((s) => s.productId);
+  // Array dos id's dos produtos que estão no banco de dados
+  const [allProducts] = await productsModel.getAllProducts();
+  const arrayId = allProducts.map((p) => p.id);
+  const validate = array.every((s) => arrayId.includes(s));
+
+  if (!validateSale) {
+      return { type: 404, message: { message: 'Sale not found' } };
+  }
+  if (!validate) {
+          return { type: 404, message: { message: 'Product not found' } };
+  }
+  await salesModels.updateSalesProducts(id, sale);
+  return { type: 200, message: { saleId: id, itemsUpdated: sale } };
+};
   
 module.exports = {
   insertSales,
@@ -52,4 +75,5 @@ module.exports = {
   getAllSales,
   getSaleById,
   deleteSaleById,
+  updateSalesProducts,
 };
