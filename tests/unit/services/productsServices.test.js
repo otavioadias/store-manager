@@ -7,24 +7,23 @@ const productsServices = require("../../../src/services/productsServices");
 const {
   allProductsResponse,
   rightProductBody,
-  productCreateResponse,
+  productSearchNameResponse,
 } = require("../../../__tests__/_dataMock");
 
-describe("Teste de unidade do productsServices", () => {
   describe("Retorna uma mensagem de erro se perquisar um id inexistente", () => {
     before(async () => {
       sinon
         .stub(productsModels, "getProductById")
-        .resolves( [{message: {message: "Product not found"}}] );
+        .resolves([{ type: 404, message: { message: "Product not found" } }]);
     });
     after(async () => productsModels.getProductById.restore());
 
     it("Retorna uma mensagem de erro", async () => {
       const result = await productsServices.getProductById(9);
+      console.log(result);
       expect(result.message).to.be.undefined;
     });
   });
-});
 
 describe("Retorna um objeto com o id correspondente", () => {
   beforeEach(async () => {
@@ -88,3 +87,30 @@ describe('Retorna false caso tente deletar um produto com id inexistente', () =>
   });
 });
 
+describe('Retorna um produto quando pesquisado um termo do name', () => {
+  beforeEach(async () => {
+    sinon
+      .stub(productsModels, "findProductByName")
+      .resolves(productSearchNameResponse);
+  });
+  afterEach(async () => productsModels.findProductByName.restore());
+
+  it('Retorna o produto pesquisado', async () => {
+    const result = await productsServices.findProductByName("Martelo");
+    expect(result.message).to.be.equal(productSearchNameResponse[0]);
+  });
+});
+
+describe("Retorna todos os produtos quando pesquisado um termo do name inexistente", () => {
+  beforeEach(async () => {
+    sinon
+      .stub(productsModels, "findProductByName")
+      .resolves([allProductsResponse]);
+  });
+  afterEach(async () => productsModels.findProductByName.restore());
+
+  it("Retorna o produto pesquisado", async () => {
+    const result = await productsServices.findProductByName("Submarino");
+    expect(result.message).to.be.equal(allProductsResponse);
+  });
+});
